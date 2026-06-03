@@ -27,7 +27,14 @@
             align-items: center;
         }
 
+        a {
+            text-decoration: none;
+        }
+
         .channel-btn {
+            display: flex;
+            align-items: center;
+            gap: 12px;
             padding: 18px 36px;
             font-size: 22px;
             font-weight: bold;
@@ -44,8 +51,9 @@
             transform: scale(1.05);
         }
 
-        a {
-            text-decoration: none;
+        .yt-icon {
+            width: 28px;
+            height: 28px;
         }
     </style>
 </head>
@@ -56,6 +64,12 @@
     <div class="button-container">
         <a href="https://www.youtube.com/@real_skellyAC" target="_blank" rel="noopener noreferrer">
             <button class="channel-btn">
+                
+                <!-- YouTube Icon -->
+                <svg class="yt-icon" viewBox="0 0 24 24" fill="white">
+                    <path d="M23.498 6.186a2.997 2.997 0 0 0-2.112-2.12C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.386.566A2.997 2.997 0 0 0 .502 6.186 31.2 31.2 0 0 0 0 12a31.2 31.2 0 0 0 .502 5.814 2.997 2.997 0 0 0 2.112 2.12C4.5 20.5 12 20.5 12 20.5s7.5 0 9.386-.566a2.997 2.997 0 0 0 2.112-2.12A31.2 31.2 0 0 0 24 12a31.2 31.2 0 0 0-.502-5.814zM9.75 15.02V8.98L15.5 12l-5.75 3.02z"/>
+                </svg>
+
                 Check out my channel!
             </button>
         </a>
