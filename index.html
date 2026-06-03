@@ -26,12 +26,10 @@
         align-items: center;
     }
 
-    /* LOGO */
     .logo {
         width: 260px;
         margin-top: 40px;
         border-radius: 18px;
-        transition: none; /* removed hover movement */
     }
 
     h1 {
@@ -113,9 +111,17 @@
         height: 26px;
     }
 
-    /* CREDITS */
+    /* DROPDOWNS */
     .dropdown {
-        position: relative;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* ✅ ONLY CHANGE: GAP ADDED HERE */
+    .dropdown:first-of-type {
+        margin-top: 25px;
     }
 
     .credits-btn {
@@ -123,16 +129,18 @@
         box-shadow: 0 10px 25px rgba(0,100,255,0.25);
     }
 
-    .credits-btn:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 15px 35px rgba(0,100,255,0.4);
+    .about-btn {
+        background: linear-gradient(135deg, #2ecc71, #1e9e55);
+        box-shadow: 0 10px 25px rgba(46,204,113,0.25);
     }
 
+    .credits-btn:hover,
+    .about-btn:hover {
+        transform: translateY(-4px);
+    }
+
+    /* FIXED DROPDOWN FLOW */
     .dropdown-content {
-        position: absolute;
-        top: 120%;
-        left: 50%;
-        transform: translateX(-50%) translateY(-12px) scale(0.96);
         width: min(420px, 90vw);
         background: rgba(25,25,25,0.9);
         border: 1px solid rgba(255,255,255,0.1);
@@ -142,14 +150,20 @@
         text-align: center;
 
         opacity: 0;
-        pointer-events: none;
-        transition: all 0.28s ease;
+        max-height: 0;
+        overflow: hidden;
+
+        transform: scaleY(0.9);
+        transform-origin: top;
+        transition: all 0.3s ease;
+        margin-top: 0;
     }
 
     .dropdown-content.show {
         opacity: 1;
-        transform: translateX(-50%) translateY(0) scale(1);
-        pointer-events: auto;
+        max-height: 200px;
+        transform: scaleY(1);
+        margin-top: 10px;
     }
 
     footer {
@@ -187,6 +201,16 @@
     </a>
 
     <div class="dropdown">
+        <button class="btn about-btn" onclick="toggleAbout()">
+            ❗ About
+        </button>
+
+        <div id="aboutMenu" class="dropdown-content">
+            This discord server mainly revolves around my channel, stuff like my streaming, videos, and more. Also thanks for visiting my website!
+        </div>
+    </div>
+
+    <div class="dropdown">
         <button class="btn credits-btn" onclick="toggleCredits()">
             📃 Credits
         </button>
@@ -207,9 +231,14 @@ function toggleCredits() {
     document.getElementById("creditsMenu").classList.toggle("show");
 }
 
+function toggleAbout() {
+    document.getElementById("aboutMenu").classList.toggle("show");
+}
+
 window.addEventListener("click", function(e) {
     if (!e.target.closest(".dropdown")) {
         document.getElementById("creditsMenu").classList.remove("show");
+        document.getElementById("aboutMenu").classList.remove("show");
     }
 });
 </script>
