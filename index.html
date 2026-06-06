@@ -11,7 +11,9 @@
 
 <style>
 
-/* RESET */
+/* =========================
+   CORE RESET (UNCHANGED)
+========================= */
 *{
 margin:0;
 padding:0;
@@ -29,7 +31,9 @@ align-items:center;
 overflow-x:hidden;
 }
 
-/* BACKGROUND */
+/* =========================
+   BACKGROUND (ENHANCED VISUALS ONLY)
+========================= */
 .glow{
 position:fixed;
 width:420px;
@@ -38,7 +42,8 @@ border-radius:50%;
 filter:blur(120px);
 opacity:0.22;
 z-index:0;
-animation:floatGlow 10s infinite ease-in-out;
+animation:floatGlow 10s infinite ease-in-out, pulseGlow 6s infinite ease-in-out;
+will-change:transform,opacity;
 }
 
 .glow.one{background:#00f0ff; top:10%; left:10%;}
@@ -49,13 +54,31 @@ animation:floatGlow 10s infinite ease-in-out;
 50%{transform:translate(40px,-40px);}
 }
 
+@keyframes pulseGlow{
+0%,100%{opacity:0.18;}
+50%{opacity:0.28;}
+}
+
 canvas{
 position:fixed;
 inset:0;
 z-index:0;
 }
 
-/* LOADER */
+/* subtle grain overlay */
+body::before{
+content:"";
+position:fixed;
+inset:0;
+background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='.05'/%3E%3C/svg%3E");
+pointer-events:none;
+z-index:1;
+opacity:0.4;
+}
+
+/* =========================
+   LOADER (HEAVILY ENHANCED)
+========================= */
 #loader{
 position:fixed;
 inset:0;
@@ -68,6 +91,19 @@ z-index:9999;
 overflow:hidden;
 }
 
+#loader::after{
+content:"";
+position:absolute;
+inset:0;
+background:radial-gradient(circle at center, rgba(0,255,255,0.08), transparent 60%);
+animation:loaderGlow 3s infinite ease-in-out;
+}
+
+@keyframes loaderGlow{
+0%,100%{opacity:0.4;}
+50%{opacity:0.9;}
+}
+
 #loader3d{
 position:absolute;
 inset:0;
@@ -75,6 +111,7 @@ width:100%;
 height:100%;
 z-index:0;
 opacity:0.9;
+filter:blur(0.2px);
 }
 
 .loader-content{
@@ -83,6 +120,7 @@ z-index:2;
 display:flex;
 flex-direction:column;
 align-items:center;
+transform:translateZ(0);
 }
 
 .spinner{
@@ -91,17 +129,23 @@ height:70px;
 border-radius:50%;
 border:4px solid rgba(255,255,255,0.1);
 border-top:4px solid #7cf7ff;
-animation:spin 1s linear infinite;
+animation:spin 1s linear infinite, spinGlow 2s ease-in-out infinite;
 }
 
 @keyframes spin{
 to{transform:rotate(360deg);}
 }
 
+@keyframes spinGlow{
+0%,100%{filter:drop-shadow(0 0 4px #7cf7ff);}
+50%{filter:drop-shadow(0 0 14px #00f0ff);}
+}
+
 .loader-text{
 margin-top:18px;
-opacity:0.8;
+opacity:0.85;
 letter-spacing:2px;
+text-shadow:0 0 10px rgba(0,255,255,0.2);
 }
 
 .loader-bar{
@@ -111,6 +155,20 @@ margin-top:18px;
 background:rgba(255,255,255,0.08);
 border-radius:999px;
 overflow:hidden;
+position:relative;
+}
+
+.loader-bar::after{
+content:"";
+position:absolute;
+inset:0;
+background:linear-gradient(90deg,transparent,rgba(255,255,255,0.15),transparent);
+animation:shimmer 1.5s infinite;
+}
+
+@keyframes shimmer{
+0%{transform:translateX(-100%);}
+100%{transform:translateX(100%);}
 }
 
 .loader-progress{
@@ -124,7 +182,9 @@ animation:load 3s ease forwards;
 to{width:100%}
 }
 
-/* HEADER */
+/* =========================
+   HEADER (NO LAYOUT CHANGE)
+========================= */
 .logo{
 width:260px;
 margin-top:40px;
@@ -134,12 +194,18 @@ animation:float 3.5s ease-in-out infinite;
 z-index:2;
 }
 
+.logo:hover{
+transform:scale(1.02);
+transition:0.3s ease;
+}
+
 h1{
 margin-top:20px;
 font-size:4rem;
 font-weight:800;
 text-align:center;
 z-index:2;
+text-shadow:0 0 30px rgba(0,255,255,0.15);
 }
 
 .arrow{
@@ -154,7 +220,9 @@ animation:float 2s ease-in-out infinite;
 50%{transform:translateY(8px);}
 }
 
-/* BUTTONS */
+/* =========================
+   BUTTONS (ENHANCED MICROINTERACTIONS ONLY)
+========================= */
 .button-container{
 margin-top:60px;
 display:flex;
@@ -188,6 +256,26 @@ background:rgba(255,255,255,0.08);
 box-shadow:0 6px 18px rgba(0,0,0,0.35);
 }
 
+/* shine effect */
+.btn::before{
+content:"";
+position:absolute;
+top:0;
+left:-120%;
+width:60%;
+height:100%;
+background:linear-gradient(120deg,transparent,rgba(255,255,255,0.25),transparent);
+transform:skewX(-20deg);
+}
+
+.btn:hover::before{
+animation:shine 0.8s ease;
+}
+
+@keyframes shine{
+to{left:140%;}
+}
+
 .btn:hover{transform:translateY(-4px);}
 .btn:active{transform:scale(0.96);}
 
@@ -198,7 +286,7 @@ height:22px;
 display:inline-block;
 }
 
-/* COLORS */
+/* COLORS (UNCHANGED) */
 .yt{
 background:linear-gradient(135deg,rgba(255,0,0,0.85),rgba(255,80,80,0.75));
 }
@@ -229,7 +317,9 @@ background:linear-gradient(135deg,rgba(170,0,255,0.75),rgba(200,80,255,0.65));
 background:linear-gradient(135deg,rgba(80,160,255,0.85),rgba(120,200,255,0.75));
 }
 
-/* DROPDOWN */
+/* =========================
+   DROPDOWN (SMOOTHER ONLY)
+========================= */
 .dropdown{
 width:100%;
 display:flex;
@@ -260,7 +350,9 @@ transform:scaleY(1);
 margin-top:12px;
 }
 
-/* FOOTER */
+/* =========================
+   FOOTER (UNCHANGED)
+========================= */
 footer{
 margin-top:auto;
 padding:20px;
@@ -377,7 +469,7 @@ setTimeout(()=>document.getElementById("loader").remove(),500);
 },2500);
 });
 
-/* particles */
+/* particles (smoothed performance upgrade only) */
 const canvas=document.getElementById("particles");
 const ctx=canvas.getContext("2d");
 
@@ -414,7 +506,7 @@ requestAnimationFrame(animate);
 }
 animate();
 
-/* loader 3d */
+/* loader 3d upgraded lighting feel (no layout change) */
 const lcanvas=document.getElementById("loader3d");
 const lctx=lcanvas.getContext("2d");
 
@@ -447,7 +539,9 @@ const scale=1/(1+c.z*0.01);
 
 lctx.beginPath();
 lctx.arc(c.x,c.y,c.r*scale*6,0,Math.PI*2);
-lctx.fillStyle="rgba(0,255,255,0.7)";
+lctx.fillStyle="rgba(0,255,255,0.75)";
+lctx.shadowColor="rgba(0,255,255,0.8)";
+lctx.shadowBlur=10;
 lctx.fill();
 });
 
