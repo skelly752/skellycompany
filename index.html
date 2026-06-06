@@ -18,7 +18,7 @@
 
     body {
         font-family: "Inter", sans-serif;
-        background: radial-gradient(circle at top, #1a1a1a, #0d0d0d);
+        background: radial-gradient(circle at top, #111827, #050608);
         color: white;
         min-height: 100vh;
         display: flex;
@@ -30,6 +30,7 @@
         width: 260px;
         margin-top: 40px;
         border-radius: 18px;
+        box-shadow: 0 0 25px rgba(0,0,0,0.6);
     }
 
     h1 {
@@ -37,12 +38,13 @@
         font-size: 4rem;
         font-weight: 800;
         text-align: center;
+        text-shadow: 0 0 18px rgba(255,255,255,0.15);
     }
 
     .arrow {
         font-size: 2rem;
         margin-top: 10px;
-        opacity: 0.5;
+        opacity: 0.7;
         animation: float 2s ease-in-out infinite;
     }
 
@@ -63,7 +65,7 @@
         width: min(620px, 94vw);
         padding: 22px 28px;
         border-radius: 999px;
-        border: none;
+        border: 2px solid rgba(0,0,0,0.9);
         font-size: 22px;
         font-weight: 600;
         color: white;
@@ -73,18 +75,20 @@
         justify-content: center;
         gap: 12px;
         transition: all 0.25s ease;
-        backdrop-filter: blur(10px);
+        backdrop-filter: blur(14px);
         position: relative;
         overflow: hidden;
+        background: rgba(255,255,255,0.08);
+        box-shadow: 0 6px 18px rgba(0,0,0,0.35);
     }
 
     .btn::after {
         content: "";
         position: absolute;
         inset: 0;
-        background: rgba(255,255,255,0.08);
+        background: rgba(255,255,255,0.18);
         opacity: 0;
-        transition: 0.3s;
+        transition: 0.25s;
     }
 
     .btn:hover::after {
@@ -95,31 +99,67 @@
         transform: scale(0.96);
     }
 
+    /* MORE VIBRANT COLORS */
     .yt {
-        background: linear-gradient(135deg, #ff2d2d, #c40000);
-        box-shadow: 0 10px 25px rgba(255,0,0,0.25);
-    }
-
-    .yt:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 15px 35px rgba(255,0,0,0.4);
+        background: linear-gradient(135deg,
+            rgba(255, 0, 0, 0.85),
+            rgba(255, 80, 80, 0.75)
+        );
+        box-shadow: 0 10px 30px rgba(255, 0, 0, 0.35);
     }
 
     .discord-btn {
-        background: linear-gradient(135deg, #ffd000, #ffb300);
-        box-shadow: 0 10px 25px rgba(255, 204, 0, 0.25);
+        background: linear-gradient(135deg,
+            rgba(255, 230, 0, 0.85),
+            rgba(255, 200, 0, 0.75)
+        );
+        box-shadow: 0 10px 30px rgba(255, 215, 0, 0.35);
         color: #1a1a1a;
         font-weight: 800;
         margin-top: 18px;
     }
 
-    /* NEW FANART BUTTON */
     .fanart-btn {
-        background: linear-gradient(135deg, #00e5ff, #00bcd4);
-        box-shadow: 0 10px 25px rgba(0, 229, 255, 0.25);
+        background: linear-gradient(135deg,
+            rgba(0, 255, 255, 0.75),
+            rgba(0, 180, 255, 0.65)
+        );
+        box-shadow: 0 10px 30px rgba(0, 220, 255, 0.25);
         color: #0d0d0d;
         font-weight: 800;
         margin-top: 18px;
+    }
+
+    .credits-btn {
+        background: linear-gradient(135deg,
+            rgba(80, 160, 255, 0.85),
+            rgba(120, 200, 255, 0.75)
+        );
+        box-shadow: 0 10px 30px rgba(80, 160, 255, 0.30);
+    }
+
+    .about-btn {
+        background: linear-gradient(135deg,
+            rgba(0, 255, 120, 0.75),
+            rgba(60, 255, 160, 0.65)
+        );
+        box-shadow: 0 10px 30px rgba(0, 255, 120, 0.25);
+    }
+
+    .staff-btn {
+        background: linear-gradient(135deg,
+            rgba(255, 140, 0, 0.80),
+            rgba(255, 190, 60, 0.70)
+        );
+        box-shadow: 0 10px 30px rgba(255, 140, 0, 0.30);
+    }
+
+    .rules-btn {
+        background: linear-gradient(135deg,
+            rgba(170, 0, 255, 0.75),
+            rgba(200, 80, 255, 0.65)
+        );
+        box-shadow: 0 10px 30px rgba(170, 0, 255, 0.30);
     }
 
     .yt-icon {
@@ -138,40 +178,21 @@
         margin-top: 25px;
     }
 
-    .credits-btn {
-        background: linear-gradient(135deg, #3a8dff, #1d5fff);
-        box-shadow: 0 10px 25px rgba(0,100,255,0.25);
-    }
-
-    .about-btn {
-        background: linear-gradient(135deg, #2ecc71, #1e9e55);
-        box-shadow: 0 10px 25px rgba(46,204,113,0.25);
-    }
-
-    .staff-btn {
-        background: linear-gradient(135deg, #ff9800, #ff6d00);
-        box-shadow: 0 10px 25px rgba(255,140,0,0.25);
-    }
-
-    .rules-btn {
-        background: linear-gradient(135deg, #9c27b0, #6a1b9a);
-        box-shadow: 0 10px 25px rgba(156,39,176,0.25);
-    }
-
     .credits-btn:hover,
     .about-btn:hover,
     .staff-btn:hover,
     .rules-btn:hover,
     .discord-btn:hover,
-    .fanart-btn:hover {
+    .fanart-btn:hover,
+    .yt:hover {
         transform: translateY(-4px);
     }
 
     .dropdown-content {
         width: min(420px, 90vw);
-        background: rgba(25,25,25,0.9);
-        border: 1px solid rgba(255,255,255,0.1);
-        backdrop-filter: blur(12px);
+        background: rgba(20,20,20,0.92);
+        border: 1px solid rgba(255,255,255,0.15);
+        backdrop-filter: blur(14px);
         border-radius: 16px;
         padding: 14px;
         text-align: center;
@@ -197,7 +218,7 @@
         margin-top: auto;
         padding: 20px;
         font-size: 12px;
-        color: rgba(255,255,255,0.4);
+        color: rgba(255,255,255,0.5);
         text-align: center;
     }
 
@@ -207,7 +228,6 @@
     }
 </style>
 </head>
-
 <body>
 
 <img src="IMG_3603.PNG" class="logo" alt="Skelly Logo">
@@ -238,7 +258,6 @@
         </button>
     </a>
 
-    <!-- NEW FANART BUTTON -->
     <div class="dropdown">
         <button class="btn fanart-btn" onclick="toggleFanart()">🎨 Fanart</button>
         <div id="fanartMenu" class="dropdown-content">
